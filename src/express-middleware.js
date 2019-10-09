@@ -32,11 +32,12 @@ class ExpressMiddleware {
         const responseLength = parseInt(res.get('Content-Length')) || 0;
 
         const route = this._getRoute(req);
+        const customLabels = this.setupOptions.customLabelsResolver(req);
 
         if (route && utils.shouldLogMetrics(this.setupOptions.excludeRoutes, route)) {
-            this.setupOptions.requestSizeHistogram.observe({ method: req.method, route: route, code: res.statusCode }, req.metrics.contentLength);
-            req.metrics.timer({ route: route, code: res.statusCode });
-            this.setupOptions.responseSizeHistogram.observe({ method: req.method, route: route, code: res.statusCode }, responseLength);
+            this.setupOptions.requestSizeHistogram.observe({ method: req.method, route: route, code: res.statusCode, ...customLabels }, req.metrics.contentLength);
+            req.metrics.timer({ route: route, code: res.statusCode, ...customLabels });
+            this.setupOptions.responseSizeHistogram.observe({ method: req.method, route: route, code: res.statusCode, ...customLabels }, responseLength);
             debug(`metrics updated, request length: ${req.metrics.contentLength}, response length: ${responseLength}`);
         }
     }
@@ -69,7 +70,7 @@ class ExpressMiddleware {
                 route = route.replace(req.params[paramName], ':' + paramName);
             });
         }
-        
+
         // this condition will evaluate to true only in
         // express framework and no route was found for the request. if we log this metrics
         // we'll risk in a memory leak since the route is not a pattern but a hardcoded string.

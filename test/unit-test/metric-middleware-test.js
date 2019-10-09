@@ -571,5 +571,36 @@ describe('metrics-middleware', () => {
                 });
             });
         });
+        after(() => {
+            Prometheus.register.clear();
+        });
+    });
+    describe('when calling the function without options (customLabels, customLabelsResolver)', () => {
+        before(() => {
+            middleware({
+                customLabels: ['myCustomLabel']
+            });
+        });
+        it('should have http_request_size_bytes metrics with default buckets', () => {
+            expect(Prometheus.register.getSingleMetric('http_request_size_bytes').bucketValues).to.have.all.keys([5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000]);
+        });
+        it('should have http_request_size_bytes with the right labels', () => {
+            expect(Prometheus.register.getSingleMetric('http_request_size_bytes').labelNames).to.have.members(['method', 'route', 'code', 'myCustomLabel']);
+        });
+        it('should have http_request_duration_seconds metrics with default buckets', () => {
+            expect(Prometheus.register.getSingleMetric('http_request_duration_seconds').bucketValues).to.have.all.keys([0.001, 0.005, 0.015, 0.05, 0.1, 0.2, 0.3, 0.4, 0.5]);
+        });
+        it('should have http_request_duration_seconds with the right labels', () => {
+            expect(Prometheus.register.getSingleMetric('http_request_duration_seconds').labelNames).to.have.members(['method', 'route', 'code', 'myCustomLabel']);
+        });
+        it('should have http_response_size_bytes metrics with default buckets', () => {
+            expect(Prometheus.register.getSingleMetric('http_response_size_bytes').bucketValues).to.have.all.keys([5, 10, 25, 50, 100, 250, 500, 1000, 2500, 5000, 10000]);
+        });
+        it('should have http_response_size_bytes with the right labels', () => {
+            expect(Prometheus.register.getSingleMetric('http_response_size_bytes').labelNames).to.have.members(['method', 'route', 'code', 'myCustomLabel']);
+        });
+        after(() => {
+            Prometheus.register.clear();
+        });
     });
 });

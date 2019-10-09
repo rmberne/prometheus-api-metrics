@@ -3,9 +3,6 @@
 [![NPM Version][npm-image]][npm-url]
 [![NPM Downloads][downloads-image]][downloads-url]
 [![Build Status][travis-image]][travis-url]
-[![Test Coverage][coveralls-image]][coveralls-url]
-[![Known Vulnerabilities][snyk-image]][snyk-url]
-[![Apache 2.0 License][license-image]][license-url]
 
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
@@ -223,15 +220,11 @@ avg(nodejs_external_memory_bytes / 1024 / 1024) by (<SERVICE_LABLE_FIELD)
 avg(nodejs_eventloop_lag_seconds) by (<SERVICE_LABLE_FIELD)
 ```
 
-[npm-image]: https://img.shields.io/npm/v/prometheus-api-metrics.svg?style=flat
-[npm-url]: https://npmjs.org/package/prometheus-api-metrics
-[travis-image]: https://travis-ci.org/Zooz/prometheus-api-metrics.svg?branch=master
-[travis-url]: https://travis-ci.org/Zooz/prometheus-api-metrics
-[coveralls-image]: https://coveralls.io/repos/github/Zooz/prometheus-api-metrics/badge.svg?branch=master
-[coveralls-url]: https://coveralls.io/github/Zooz/prometheus-api-metrics?branch=master
-[downloads-image]: http://img.shields.io/npm/dm/prometheus-api-metrics.svg?style=flat
-[downloads-url]: https://npmjs.org/package/prometheus-api-metrics
+[npm-image]: https://img.shields.io/npm/v/@rmberne/prometheus-api-metrics.svg?style=flat
+[npm-url]: https://npmjs.org/package/@rmberne/prometheus-api-metrics
+[travis-image]: https://travis-ci.org/@rmberne/prometheus-api-metrics.svg?branch=master
+[travis-url]: https://travis-ci.org/@rmberne/prometheus-api-metrics
+[downloads-image]: http://img.shields.io/npm/dm/@rmberne/prometheus-api-metrics.svg?style=flat
+[downloads-url]: https://npmjs.org/package/@rmberne/prometheus-api-metrics
 [license-image]: https://img.shields.io/badge/license-Apache_2.0-green.svg?style=flat
 [license-url]: LICENSE
-[snyk-image]: https://snyk.io/test/npm/prometheus-api-metrics/badge.svg
-[snyk-url]: https://snyk.io/test/npm/prometheus-api-metrics
